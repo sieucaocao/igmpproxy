@@ -12,7 +12,7 @@ PKG_VERSION:=0.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/pali/igmpproxy/releases/download/${PKG_VERSION}/
+PKG_SOURCE_URL:=https://github.com/pali/igmpproxy/releases/download/$(PKG_VERSION)/
 PKG_HASH:=afa4b75a823b82f71ce99f33eae4e8136b906ae8a5ede5caaad93bac38cdae24
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
 
@@ -38,6 +38,8 @@ endef
 define Package/igmpproxy/conffiles
 /etc/config/igmpproxy
 endef
+
+TARGET_CFLAGS += -Dlog=igmpproxy_log -std=gnu99
 
 define Package/igmpproxy/install
 	$(INSTALL_DIR) $(1)/etc/config
